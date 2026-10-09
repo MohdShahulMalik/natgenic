@@ -1,27 +1,5 @@
-@import "tailwindcss";
-
-@theme {
-  --color-nat-bg: #FBFAF8;
-  --color-nat-alt: #F4F3EF;
-  --color-nat-grey: #EFEEEA;
-  --color-nat-line: #E2E0DA;
-  --color-nat-ink: #1F2321;
-  --color-nat-soft: #5A615C;
-  --color-nat-faint: #8E948F;
-  --color-nat-green: #4A6B52;
-  --color-nat-greendk: #38503E;
-  --color-nat-tint: #EAEFEA;
-  --color-nat-sage: #9FBFA6;
-  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --radius-nat-sm: 6px;
-  --radius-nat-md: 12px;
-  --radius-nat-lg: 20px;
-}
-
-
 /* ============================================================
-   NATGENIC 
-i DESIGN TOKENS
+   NATGENIC i DESIGN TOKENS
    ============================================================ */
 :root{
   --bg:        #FBFAF8;   /* warm white */
