@@ -1,0 +1,15 @@
+---
+interface Props {
+  id: string;
+  label: string;
+  hint?: string;
+  variant?: string;
+}
+
+const { id, label, hint, variant = '' } = Astro.props;
+---
+<div class:list={['ph', variant]}>
+  <span class="ph-id">{id}</span>
+  <span class="ph-label">{label}</span>
+  {hint && <span class="ph-hint">{hint}</span>}
+</div>

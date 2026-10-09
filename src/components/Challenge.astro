@@ -1,0 +1,33 @@
+---
+import { TIMELINE } from '../data/content';
+---
+<section class="challenge" id="challenge">
+  <div class="wrap">
+    <div class="reveal" style="max-width:760px">
+      <p class="eyebrow">The 60-Day Challenge</p>
+      <h2 class="h-xl">Give Your Hair 60 Days.</h2>
+      <p class="sub">Consistency is where the difference begins.</p>
+      <div class="divider"></div>
+      <p class="lead">
+        Hair changes slowly. The 60-Day Challenge is simple: use Natgenic
+        consistently for two months, follow the routine, and let your own progress
+        be the measure, not a promise made on a website.
+      </p>
+    </div>
+    <div class="timeline reveal">
+      {TIMELINE.map((step) => (
+        <div class="tl-step">
+          <div class="tl-dot"></div>
+          <div>
+            <p class="tl-day">{step.day}</p>
+            <p class="tl-text">{step.text}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+    <div class="challenge-foot reveal">
+      <p>Our customers have done it. Their 60-day progress is below.</p>
+      <a class="btn btn-light" href="#results">See real results <span class="arw">&rarr;</span></a>
+    </div>
+  </div>
+</section>

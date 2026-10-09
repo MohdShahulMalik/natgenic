@@ -1,0 +1,67 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = 'Natgenic — Hair Care Designed for Hair Fall & Thinning',
+  description = 'Natgenic is a concentrated natural hair oil formulated to support stronger, healthier-looking hair for people dealing with hair fall, thinning and genetic hair loss. 60 ml — ₹600.',
+} = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <slot />
+    <script>
+      // Sticky header border
+      const header = document.querySelector('.site-header');
+      window.addEventListener(
+        'scroll',
+        () => {
+          header?.classList.toggle('is-stuck', window.scrollY > 8);
+        },
+        { passive: true },
+      );
+
+      // Scroll reveal
+      (() => {
+        const items = document.querySelectorAll('.reveal');
+        if (!('IntersectionObserver' in window)) {
+          items.forEach((el) => el.classList.add('in'));
+          return;
+        }
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((e) => {
+              if (e.isIntersecting) {
+                e.target.classList.add('in');
+                io.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
+        );
+        items.forEach((el, i) => {
+          (el as HTMLElement).style.transitionDelay = `${(i % 4) * 70}ms`;
+          io.observe(el);
+        });
+      })();
+    </script>
+  </body>
+</html>

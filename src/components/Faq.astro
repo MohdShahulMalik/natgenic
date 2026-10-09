@@ -1,0 +1,64 @@
+---
+import { FAQS } from '../data/content';
+---
+<section class="section-alt" id="faq">
+  <div class="wrap">
+    <div class="center reveal">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="h-lg">Questions, answered.</h2>
+      <div class="divider" style="margin-top:28px"></div>
+    </div>
+    <div class="faq reveal" id="faq-list">
+      {FAQS.map((item) => (
+        <div class="faq-item">
+          <button class="faq-q" aria-expanded="false">
+            {item.q}
+            <span class="faq-icon" aria-hidden="true"></span>
+          </button>
+          <div class="faq-a">
+            <div class="faq-a-inner">{item.a}</div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  function initFaq(): void {
+    const list = document.getElementById('faq-list');
+    if (!list) return;
+    const buttons = list.querySelectorAll<HTMLButtonElement>('.faq-q');
+    buttons.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement as HTMLElement | null;
+        if (!item) return;
+        const panel = item.querySelector<HTMLElement>('.faq-a');
+        if (!panel) return;
+        const isOpen = item.classList.contains('open');
+
+        list.querySelectorAll('.faq-item.open').forEach((open) => {
+          const el = open as HTMLElement;
+          el.classList.remove('open');
+          const a = el.querySelector<HTMLElement>('.faq-a');
+          if (a) a.style.maxHeight = '';
+          const q = el.querySelector('.faq-q');
+          q?.setAttribute('aria-expanded', 'false');
+        });
+
+        if (!isOpen) {
+          item.classList.add('open');
+          panel.style.maxHeight = `${panel.scrollHeight}px`;
+          btn.setAttribute('aria-expanded', 'true');
+        }
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      const open = list.querySelector<HTMLElement>('.faq-item.open .faq-a');
+      if (open) open.style.maxHeight = `${open.scrollHeight}px`;
+    });
+  }
+
+  initFaq();
+</script>
